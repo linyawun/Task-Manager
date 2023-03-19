@@ -6,9 +6,10 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "axios": "^1.3.4", 
+    "axios": "^1.3.4",
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.3",
+    "gh-pages": "^5.0.0",
     "marked": "^4.2.12",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.2",
@@ -25,9 +26,12 @@
     "start": "set PORT=8000 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "proxy": "https://github.com",
+  "homepage": "https://linyawun.github.io/task-manager",
   "eslintConfig": {
     "extends": [
       "react-app",

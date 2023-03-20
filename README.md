@@ -1,18 +1,53 @@
-# Getting Started with Create React App
+# Task-Manager
+![image](https://i.imgur.com/AYHFWJM.jpg)
+> 此專案為 Dcard [2023 Frontend Intern Homework](https://drive.google.com/file/d/1ZlwuUafAQUKBEA_ZK6ShM5F4xLTkV_4X/view)，是一個串接 Github API，讓使用者能「新增」、「更新」、「搜尋」Task，並能夠更新 Task 狀態的專案管理工具。
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
- 
-## Available Scripts   
+- [線上觀看連結](https://linyawun.github.io/Task-Manager/)
 
-In the project directory, you can run:
+## 功能 
+> 需使用自己的 Github 帳號登入
 
-### `npm start`
+- [x] 登入(Github OAuth)
+- [x] 登出
+- [x] 顯示 task 列表 (即 issue 列表)
+- [x] task 篩選：依據狀態、建立時間、關鍵字內容篩選 
+- [x] 顯示 task 詳情頁
+- [x] 編輯 task，可編輯 title、body、state
+- [x] 刪除 task (即 close issue)
+- [x] 新增 task
+- [x] 新增/編輯欄位的表單驗證
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 畫面
+- Task List
+![image](https://i.imgur.com/6Nkw8A2.jpg)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Task Info
+![image](https://i.imgur.com/4JsGPbI.jpg)
+
+- Edit Task
+![image](https://i.imgur.com/bkE6Iny.jpg)
+
+## 安裝
+以下將會引導你如何安裝此專案到你的電腦上。
+> 請先安裝 [Node.js](https://nodejs.org/zh-tw/download)，Node.js 版本建議為：`18.12.0` 以上
+### 取得專案
+```bash
+git clone https://github.com/linyawun/Task-Manager.git
+```
+### 移動到專案內
+```bash
+cd Task-Manager
+```
+### 安裝套件
+```bash
+npm install
+```
+### 環境變數設定
+請在終端機輸入 cp .env.example .env 來複製 .env.example 檔案，並依據 .env 內容調整相關欄位。
+### 
+## 聯絡作者
+你可以透過以下方式與我聯絡
+- email: linyawun031@gmail.com
 
 ### `npm test`
 

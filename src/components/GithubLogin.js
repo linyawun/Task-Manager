@@ -7,7 +7,7 @@ import { UserContext } from '../store';
 import useLogOut from '../utilities/logOut';
 
 const GITHUB_AUTH_URL = 'https://github.com/login/oauth/authorize';
-const GITHUB_TOKEN_URL = 'https://github.com/login/oauth/access_token';
+const API_BASEURL = process.env.API_BASEURL;
 const homepage = `${window.location.protocol}//${window.location.host}`;
 const clientId = process.env.REACT_APP_CLIENTID;
 const clientSecret = process.env.REACT_APP_CLIENTSECRET;
@@ -27,6 +27,26 @@ const GithubLogin = () => {
     window.history.replaceState(null, '', currentPath);
   }
 
+  const getAccessToken = async (code) => {
+    try {
+      const res = await axios.post(`${API_BASEURL}/getAccessToken`, {
+        clientId,
+        clientSecret,
+        code,
+      });
+      if (res.status === 200) {
+        localStorage.setItem('github_accessToken', res.data.access_token);
+        setAccessToken(res.data.access_token);
+      } else {
+        sweetAlert('Login timeout, please login again', 'error');
+        logOut();
+        window.location.href = homepage;
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     // 從 URL 中獲取授權碼(code)
     const searchParams = new URLSearchParams(window.location.search);
@@ -34,38 +54,39 @@ const GithubLogin = () => {
 
     // 如果 URL 中存在授權碼(code)且還沒有accesstoken，則發送 POST 請求以獲取訪問權限令牌(access token)
     if (code && !accessToken) {
-      axios
-        .post(
-          `${GITHUB_TOKEN_URL}`,
-          {
-            client_id: clientId,
-            client_secret: clientSecret,
-            code,
-          },
-          {
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded',
-              Accept: 'application/json',
-            },
-          }
-        )
-        .then((response) => {
-          // 設置訪問權限令牌(access token)
-          if (response.status === 200) {
-            localStorage.setItem(
-              'github_accessToken',
-              response.data.access_token
-            );
-            setAccessToken(response.data.access_token);
-          } else {
-            sweetAlert('Login timeout, please login again', 'error');
-            logOut();
-            window.location.href = homepage;
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+      getAccessToken(code);
+      // axios
+      //   .post(
+      //     `${GITHUB_TOKEN_URL}`,
+      //     {
+      //       client_id: clientId,
+      //       client_secret: clientSecret,
+      //       code,
+      //     },
+      //     {
+      //       headers: {
+      //         'Content-Type': 'application/x-www-form-urlencoded',
+      //         Accept: 'application/json',
+      //       },
+      //     }
+      //   )
+      //   .then((response) => {
+      //     // 設置訪問權限令牌(access token)
+      //     if (response.status === 200) {
+      //       localStorage.setItem(
+      //         'github_accessToken',
+      //         response.data.access_token
+      //       );
+      //       setAccessToken(response.data.access_token);
+      //     } else {
+      //       sweetAlert('Login timeout, please login again', 'error');
+      //       logOut();
+      //       window.location.href = homepage;
+      //     }
+      //   })
+      //   .catch((error) => {
+      //     console.error(error);
+      //   });
     }
   }, []);
 

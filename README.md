@@ -50,6 +50,9 @@ npm start
 ```
 ### 開啟專案
 在瀏覽器網址列輸入以下即可看到畫面
+```
+http://localhost:8000/
+```
 ## 環境變數說明
 1. 請先申請 Github OAuth2 認證，到 [Register a new OAuth application](https://github.com/settings/applications/new) 註冊成為 OAuth 使用者
   - 必填欄位 “Application name”、“Authorization callback URL”、“Homepage URL”

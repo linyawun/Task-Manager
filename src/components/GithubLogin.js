@@ -7,7 +7,7 @@ import { UserContext } from '../store';
 import useLogOut from '../utilities/logOut';
 
 const GITHUB_AUTH_URL = 'https://github.com/login/oauth/authorize';
-const GITHUB_TOKEN_URL = '/login/oauth/access_token';
+const GITHUB_TOKEN_URL = 'https://github.com/login/oauth/access_token';
 const homepage = `${window.location.protocol}//${window.location.host}`;
 const clientId = process.env.REACT_APP_CLIENTID;
 const clientSecret = process.env.REACT_APP_CLIENTSECRET;

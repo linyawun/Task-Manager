@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 import './assets/all.scss';
 import Navbar from './components/Navbar';
 import TaskInfo from './components/TaskInfo';
@@ -9,7 +9,6 @@ import ErrorPage from './components/ErrorPage';
 import GithubLogin from './components/GithubLogin';
 import EditTask from './components/EditTask';
 import ErrorBoundary from './components/ErrorBoundary';
-import ErrorScreen from './components/ErrorScreen';
 import BackToTopButton from './components/BackToTopButton';
 import { UserContext } from './store';
 
@@ -23,11 +22,11 @@ export function App() {
       <UserContext.Provider
         value={{ userName, setUserName, accessToken, setAccessToken }}
       >
-        <BrowserRouter>
+        <HashRouter>
           <Navbar></Navbar>
           <div className='container mt-4'>
             <Routes>
-              <Route exact path='/' element={<GithubLogin />} />
+              <Route path='/' element={<GithubLogin />} />
               <Route path='tasklist' element={<TaskList />}></Route>
               <Route
                 path='taskinfo/:owner/:repo/:issueNumber'
@@ -43,7 +42,7 @@ export function App() {
             </Routes>
           </div>
           <BackToTopButton />
-        </BrowserRouter>
+        </HashRouter>
       </UserContext.Provider>
     </ErrorBoundary>
   );

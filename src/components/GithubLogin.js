@@ -1,4 +1,5 @@
 import React, { useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router';
 import axios from 'axios';
 import homePageImg from '../assets/homepage.jpg';
 import { sweetAlert } from '../utilities/helper';
@@ -14,15 +15,17 @@ const scope = 'user, public_repo';
 
 const GithubLogin = () => {
   const logOut = useLogOut();
+  const navigate = useNavigate();
   const { accessToken, setAccessToken } = useContext(UserContext);
-  // const [accessToken, setAccessToken] = useState(
-  //   localStorage.getItem('github_accessToken')
-  // );
   const redirectUrI = window.location.href;
   const handleGithubLogin = async () => {
     const githubAuthUrl = `${GITHUB_AUTH_URL}?client_id=${clientId}&scope=${scope}&redirect_uri=${redirectUrI}`;
     window.location.href = githubAuthUrl;
   };
+  function clearPathParams() {
+    const currentPath = window.location.pathname;
+    window.history.replaceState(null, '', currentPath);
+  }
 
   useEffect(() => {
     // 從 URL 中獲取授權碼(code)
@@ -68,7 +71,10 @@ const GithubLogin = () => {
 
   useEffect(() => {
     if (accessToken) {
-      window.location.href = '/tasklist';
+      clearPathParams();
+      setTimeout(() => {
+        navigate('/tasklist');
+      }, 600);
     }
   }, [accessToken]);
 

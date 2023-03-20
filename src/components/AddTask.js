@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router';
 import { Controller, useForm } from 'react-hook-form';
 import 'react-markdown-editor-lite/lib/index.css';
 import { sweetAlert, sweetAlertToast } from '../utilities/helper';
@@ -10,12 +11,10 @@ import Select from './Select';
 import MdTextarea from './MdTextarea';
 
 function AddTask() {
+  const navigate = useNavigate();
   const logOut = useLogOut();
   const { userName, accessToken } = useContext(UserContext);
   const [repos, setRepos] = useState([]);
-  // const [accessToken, setAccessToken] = useState(
-  //   `Bearer ${localStorage.getItem('github_accessToken')}`
-  // );
   const defaultVal = useRef({
     title: '',
     body: '',
@@ -51,7 +50,8 @@ function AddTask() {
       updateIssue(res.data);
       sweetAlertToast('Added successfully', 'success', 2000);
       setTimeout(() => {
-        window.location.href = '/tasklist';
+        navigate('/tasklist');
+        //window.location.href = '/tasklist';
       }, 1500);
     } catch (error) {
       console.error(error);

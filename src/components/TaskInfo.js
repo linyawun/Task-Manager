@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+import { Navigate, useParams, useNavigate } from 'react-router-dom';
 import { marked } from 'marked';
 import axios from 'axios';
 import { sweetAlert, sweetAlertToast } from '../utilities/helper';
@@ -9,6 +9,7 @@ import useLogOut from '../utilities/logOut';
 import { UserContext } from '../store';
 
 const TaskInfo = () => {
+  const navigate = useNavigate();
   const logOut = useLogOut();
   const { accessToken } = useContext(UserContext);
   const { owner, repo, issueNumber } = useParams();
@@ -19,6 +20,10 @@ const TaskInfo = () => {
     return {
       __html: marked.parse(content),
     };
+  };
+
+  const handleEdit = () => {
+    navigate(`/edittask/${owner}/${repo}/${issueNumber}`);
   };
 
   const handleDelete = async (e) => {
@@ -101,9 +106,7 @@ const TaskInfo = () => {
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu className='text-primary' container='body'>
-                      <Dropdown.Item
-                        href={`/edittask/${owner}/${repo}/${issueNumber}`}
-                      >
+                      <Dropdown.Item onClick={handleEdit}>
                         <i className='bi bi-pencil-square me-2 text-secondary'></i>
                         Edit
                       </Dropdown.Item>

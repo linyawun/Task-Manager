@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
-import { useParams, Navigate } from 'react-router-dom';
+import { useParams, Navigate, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { sweetAlertToast } from '../utilities/helper';
 import { Controller, useForm } from 'react-hook-form';
@@ -10,6 +10,7 @@ import Select from './Select';
 import MdTextarea from './MdTextarea';
 
 const EditTask = () => {
+  const navigate = useNavigate();
   const { userName, accessToken } = useContext(UserContext);
   const { owner, repo, issueNumber } = useParams();
   const [paramsIsVaild, setParamsIsVaild] = useState(true);
@@ -69,7 +70,8 @@ const EditTask = () => {
       );
       sweetAlertToast('Updated successfully', 'success', 2000);
       setTimeout(() => {
-        window.location.href = '/tasklist';
+        navigate('/tasklist');
+        //window.location.href = '/tasklist';
       }, 1500);
     } catch (error) {
       console.error(error);

@@ -31,7 +31,7 @@
     "deploy": "gh-pages -d build"
   },
   "proxy": "https://github.com",
-  "homepage": "https://linyawun.github.io/task-manager",
+  "homepage": "https://linyawun.github.io/Task-Manager",
   "eslintConfig": {
     "extends": [
       "react-app",

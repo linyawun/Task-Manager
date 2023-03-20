@@ -40,7 +40,7 @@ const GithubLogin = () => {
       } else {
         sweetAlert('Login timeout, please login again', 'error');
         logOut();
-        window.location.href = homepage;
+        //window.location.href = homepage;
       }
     } catch (error) {
       console.error(error);

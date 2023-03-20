@@ -39,7 +39,7 @@ const TaskInfo = () => {
       );
       sweetAlertToast('Deleted successfully', 'success', 2000);
       setTimeout(() => {
-        window.location.href = '/';
+        navigate('/');
       }, 1500);
     } catch (error) {
       if (error?.response?.status === 401) {

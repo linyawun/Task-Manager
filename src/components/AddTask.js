@@ -51,7 +51,6 @@ function AddTask() {
       sweetAlertToast('Added successfully', 'success', 2000);
       setTimeout(() => {
         navigate('/tasklist');
-        //window.location.href = '/tasklist';
       }, 1500);
     } catch (error) {
       console.error(error);

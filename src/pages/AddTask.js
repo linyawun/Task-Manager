@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import { Controller, useForm } from 'react-hook-form';
+import axios from 'axios';
 import 'react-markdown-editor-lite/lib/index.css';
 import { sweetAlert, sweetAlertToast } from '../utilities/helper';
 import { UserContext } from '../store';
 import useLogOut from '../utilities/logOut';
-import Input from './Input';
-import Select from './Select';
-import MdTextarea from './MdTextarea';
+import Input from '../components/Input';
+import Select from '../components/Select';
+import MdTextarea from '../components/MdTextarea';
 
 function AddTask() {
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ function AddTask() {
     reset,
     control,
     formState,
-    formState: { errors, isSubmitSuccessful },
+    formState: { errors },
   } = useForm({
     defaultValues: defaultVal.current,
     mode: 'onTouched',
@@ -91,7 +91,7 @@ function AddTask() {
     try {
       const repoName = new URL(repository_url).pathname.split('/')[3];
       const owner = localStorage.getItem('userName');
-      const response = await axios.patch(
+      await axios.patch(
         `https://api.github.com/repos/${owner}/${repoName}/issues/${number}`,
         {
           assignees: [owner],

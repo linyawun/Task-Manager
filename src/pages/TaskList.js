@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import Loading from './Loading';
+import Loading from '../components/Loading';
 import { UserContext } from '../store';
-import { sweetAlert } from '../utilities/helper';
-import { formatTime } from '../utilities/helper';
+import { sweetAlert, formatTime } from '../utilities/helper';
 import useLogOut from '../utilities/logOut';
 
 const TaskList = () => {

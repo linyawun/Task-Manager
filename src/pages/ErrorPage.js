@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
-function ErrorPage({ message = 'Oops! Something went wrong.' }) {
+function ErrorPage() {
   const path = useParams();
   console.log(path['*']);
   return (

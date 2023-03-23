@@ -1,14 +1,13 @@
 import React, { useEffect, useContext } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import homePageImg from '../assets/homepage.jpg';
-import { sweetAlert } from '../utilities/helper';
 import { UserContext } from '../store';
+import { sweetAlert } from '../utilities/helper';
 import useLogOut from '../utilities/logOut';
 
 const GITHUB_AUTH_URL = 'https://github.com/login/oauth/authorize';
 const API_BASEURL = 'https://task-api-vercel.vercel.app';
-const homepage = `${window.location.protocol}//${window.location.host}`;
 const clientId = process.env.REACT_APP_CLIENTID;
 const clientSecret = process.env.REACT_APP_CLIENTSECRET;
 const scope = 'user, public_repo';

@@ -2,11 +2,10 @@ import { useEffect, useState, useContext } from 'react';
 import { Navigate, useParams, useNavigate } from 'react-router-dom';
 import { marked } from 'marked';
 import axios from 'axios';
-import { sweetAlert, sweetAlertToast } from '../utilities/helper';
 import Dropdown from 'react-bootstrap/Dropdown';
-import { formatTime } from '../utilities/helper';
 import useLogOut from '../utilities/logOut';
 import { UserContext } from '../store';
+import { sweetAlert, sweetAlertToast, formatTime } from '../utilities/helper';
 
 const TaskInfo = () => {
   const navigate = useNavigate();
@@ -28,7 +27,7 @@ const TaskInfo = () => {
 
   const handleDelete = async (e) => {
     try {
-      const res = await axios.patch(
+      await axios.patch(
         `https://api.github.com/repos/${owner}/${repo}/issues/${issueNumber}`,
         { state: 'closed' },
         {

@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import { useParams, Navigate, useNavigate } from 'react-router-dom';
+import { Controller, useForm } from 'react-hook-form';
 import axios from 'axios';
 import { sweetAlertToast } from '../utilities/helper';
-import { Controller, useForm } from 'react-hook-form';
 import 'react-markdown-editor-lite/lib/index.css';
 import { UserContext } from '../store';
-import Input from './Input';
-import Select from './Select';
-import MdTextarea from './MdTextarea';
+import Input from '../components/Input';
+import Select from '../components/Select';
+import MdTextarea from '../components/MdTextarea';
 
 const EditTask = () => {
   const navigate = useNavigate();
@@ -26,8 +26,7 @@ const EditTask = () => {
     handleSubmit,
     control,
     setValue,
-    formState,
-    formState: { errors, isSubmitSuccessful },
+    formState: { errors },
   } = useForm({
     defaultValues: defaultVal.current,
     mode: 'onTouched',
@@ -55,7 +54,7 @@ const EditTask = () => {
   const updateIssue = async ({ title, body, state }) => {
     try {
       const owner = userName;
-      const response = await axios.patch(
+      await axios.patch(
         `https://api.github.com/repos/${owner}/${repo}/issues/${issueNumber}`,
         {
           title,

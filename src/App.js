@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 import './assets/all.scss';
 import Navbar from './components/Navbar';
-import TaskInfo from './components/TaskInfo';
-import TaskList from './components/TaskList';
-import AddTask from './components/AddTask';
-import ErrorPage from './components/ErrorPage';
-import GithubLogin from './components/GithubLogin';
-import EditTask from './components/EditTask';
+import {
+  GithubLogin,
+  TaskList,
+  TaskInfo,
+  AddTask,
+  EditTask,
+  ErrorPage,
+} from './pages';
 import ErrorBoundary from './components/ErrorBoundary';
 import BackToTopButton from './components/BackToTopButton';
 import { UserContext } from './store';

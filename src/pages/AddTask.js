@@ -110,7 +110,7 @@ function AddTask() {
 
   return (
     <>
-      <h4 className='text-primary'>Add Task</h4>
+      <h4 className='text-primary'>Create Task</h4>
       <form onSubmit={handleSubmit(onSubmit)} className='mb-6'>
         <div className='mb-3'>
           <Input
@@ -169,7 +169,7 @@ function AddTask() {
           type='submit'
           className='btn btn-primary rounded-pill actionBtn'
         >
-          Create Task
+          Create
         </button>
       </form>
     </>

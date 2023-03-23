@@ -39,7 +39,6 @@ const GithubLogin = () => {
       } else {
         sweetAlert('Login timeout, please login again', 'error');
         logOut();
-        //window.location.href = homepage;
       }
     } catch (error) {
       console.error(error);
@@ -54,38 +53,6 @@ const GithubLogin = () => {
     // 如果 URL 中存在授權碼(code)且還沒有accesstoken，則發送 POST 請求以獲取訪問權限令牌(access token)
     if (code && !accessToken) {
       getAccessToken(code);
-      // axios
-      //   .post(
-      //     `${GITHUB_TOKEN_URL}`,
-      //     {
-      //       client_id: clientId,
-      //       client_secret: clientSecret,
-      //       code,
-      //     },
-      //     {
-      //       headers: {
-      //         'Content-Type': 'application/x-www-form-urlencoded',
-      //         Accept: 'application/json',
-      //       },
-      //     }
-      //   )
-      //   .then((response) => {
-      //     // 設置訪問權限令牌(access token)
-      //     if (response.status === 200) {
-      //       localStorage.setItem(
-      //         'github_accessToken',
-      //         response.data.access_token
-      //       );
-      //       setAccessToken(response.data.access_token);
-      //     } else {
-      //       sweetAlert('Login timeout, please login again', 'error');
-      //       logOut();
-      //       window.location.href = homepage;
-      //     }
-      //   })
-      //   .catch((error) => {
-      //     console.error(error);
-      //   });
     }
   }, []);
 

@@ -54,6 +54,7 @@ npm start
 ```
 http://localhost:8000/
 ```
+
 ## 環境變數說明
 1. 請先申請 Github OAuth2 認證，到 [Register a new OAuth application](https://github.com/settings/applications/new) 註冊成為 OAuth 使用者
   - 必填欄位 “Application name”、“Authorization callback URL”、“Homepage URL”
@@ -67,6 +68,7 @@ REACT_APP_CLIENTID = #github oauth app client ID
 REACT_APP_CLIENTSECRET = #github oauth app client secret
 ...
 ```
+
 ## 資料夾說明
 - public - 靜態檔案放置處
 - src - JavsScript 檔案放置處
@@ -74,6 +76,7 @@ REACT_APP_CLIENTSECRET = #github oauth app client secret
   - components - React 元件放置處
   - pages - 頁面元件放置處
   - utilities - 共用函式放置處
+  
 ## 專案技術
 - Node.js v18.12.0
 - React v18.2.0
@@ -84,6 +87,7 @@ REACT_APP_CLIENTSECRET = #github oauth app client secret
 - Bootstrap v5.2.3
 - SweetAlert2 v11.7.3
 - marked v4.2.12
+
 ## 聯絡作者
 你可以透過以下方式與我聯絡
 - email: linyawun031@gmail.com

@@ -72,6 +72,7 @@ REACT_APP_CLIENTSECRET = #github oauth app client secret
 - src - JavsScript 檔案放置處
   - assets - scss 檔案與圖片放置處
   - components - React 元件放置處
+  - pages - 頁面元件放置處
   - utilities - 共用函式放置處
 ## 專案技術
 - Node.js v18.12.0

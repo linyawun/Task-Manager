@@ -10,7 +10,7 @@
 - [x] 登入(Github OAuth)
 - [x] 登出
 - [x] 顯示 task 列表 (即 issue 列表)
-  - 此處顯示的是 assign 給使用者的所有 issue，issu 顯示的狀態為 issue 的 label，label 分別為：Open、In Progress、Done
+  - 此處顯示的是 assign 給使用者的所有 issue，issue 顯示的狀態為 issue 的 label，label 分別為：Open、In Progress、Done
 - [x] task 篩選：依據狀態、建立時間、關鍵字內容篩選 
 - [x] 顯示 task 詳情頁
 - [x] 編輯 task，可編輯 title、body、state

@@ -2,8 +2,9 @@ import React, { useState, useEffect, useRef, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Loading from '../components/Loading';
+import TaskIntro from '../components/TaskIntro';
 import { UserContext } from '../store';
-import { sweetAlert, formatTime } from '../utilities/helper';
+import { sweetAlert } from '../utilities/helper';
 import useLogOut from '../utilities/logOut';
 
 const TaskList = () => {
@@ -209,35 +210,7 @@ const TaskList = () => {
           {issueData.length === 0 ? (
             <p className='text-center'>No Data</p>
           ) : (
-            issueData.map((issue) => {
-              const repoUrl = new URL(issue.repository_url);
-              const owner = repoUrl.pathname.split('/')[2];
-              const repoName = repoUrl.pathname.split('/')[3];
-              return (
-                <div className='card mb-2' key={issue.id}>
-                  <div className='card-body'>
-                    <span
-                      className='badge mb-2'
-                      style={{ backgroundColor: `#${issue.labels[0].color}` }}
-                    >
-                      {issue.labels[0].name}
-                    </span>
-                    <h5 className='card-title'>
-                      <small>{issue.repository_url.split('repos/')[1]}</small>
-                      <Link
-                        to={`/taskinfo/${owner}/${repoName}/${issue.number}`}
-                        className='link-primary ms-2'
-                      >
-                        {issue.title}
-                      </Link>
-                    </h5>
-                    <small className='text-light'>
-                      {formatTime(issue.created_at)}
-                    </small>
-                  </div>
-                </div>
-              );
-            })
+            issueData.map((issue) => <TaskIntro issue={issue} />)
           )}
           <div className='observer' ref={listObserver}></div>
         </div>

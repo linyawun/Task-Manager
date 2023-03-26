@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from 'react';
 import { Navigate, useParams, useNavigate } from 'react-router-dom';
 import { marked } from 'marked';
 import axios from 'axios';
-import Dropdown from 'react-bootstrap/Dropdown';
+import TaskDropdown from '../components/TaskDropdown';
 import useLogOut from '../utilities/logOut';
 import { UserContext } from '../store';
 import { sweetAlert, sweetAlertToast, formatTime } from '../utilities/helper';
@@ -93,30 +93,12 @@ const TaskInfo = () => {
                   {issue.labels[0].name}
                 </span>
                 <div className='dropdown'>
-                  <Dropdown>
-                    <Dropdown.Toggle
-                      variant=''
-                      id='dropdown-basic'
-                      className='dotBtn rounded-pill'
-                    >
-                      <span>
-                        <i className='bi bi-three-dots-vertical'></i>
-                      </span>
-                    </Dropdown.Toggle>
-
-                    <Dropdown.Menu className='text-primary' container='body'>
-                      <Dropdown.Item onClick={handleEdit}>
-                        <i className='bi bi-pencil-square me-2 text-secondary'></i>
-                        Edit
-                      </Dropdown.Item>
-                      <Dropdown.Item onClick={handleDelete}>
-                        <i className='bi bi-trash3 me-2 text-danger'></i>Delete
-                      </Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
+                  <TaskDropdown
+                    handleEdit={handleEdit}
+                    handleDelete={handleDelete}
+                  />
                 </div>
               </div>
-
               <p>
                 <small>{issue.repository_url.split('repos/')[1]}</small>
               </p>

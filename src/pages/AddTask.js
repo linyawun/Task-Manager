@@ -65,6 +65,10 @@ function AddTask() {
   }, [formState]);
 
   useEffect(() => {
+    if (!accessToken) {
+      navigate('/');
+      return;
+    }
     const getRepos = async () => {
       try {
         const response = await axios.get('https://api.github.com/user/repos', {
@@ -85,7 +89,7 @@ function AddTask() {
       }
     };
     getRepos();
-  }, []);
+  }, [navigate, accessToken]);
 
   const updateIssue = async ({ repository_url, number }) => {
     try {

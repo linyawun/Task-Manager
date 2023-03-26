@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Loading from '../components/Loading';
 import TaskIntro from '../components/TaskIntro';
@@ -8,6 +8,7 @@ import { sweetAlert } from '../utilities/helper';
 import useLogOut from '../utilities/logOut';
 
 const TaskList = () => {
+  const navigate = useNavigate();
   const logOut = useLogOut();
   const { userName, setUserName, accessToken } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
@@ -111,8 +112,12 @@ const TaskList = () => {
   };
 
   useEffect(() => {
+    if (!accessToken) {
+      navigate('/');
+      return;
+    }
     getUser();
-  }, []);
+  }, [navigate, accessToken]);
 
   useEffect(() => {
     getIssues(1, true); //每次更新字串時，都會是新的查詢字串

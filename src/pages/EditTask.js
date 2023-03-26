@@ -36,21 +36,6 @@ const EditTask = () => {
     updateIssue(data);
   };
 
-  const getIssue = async () => {
-    try {
-      const res = await axios.get(
-        `https://api.github.com/repos/${owner}/${repo}/issues/${issueNumber}`
-      );
-      setParamsIsVaild(true);
-      setIssue(res.data);
-    } catch (error) {
-      if (error?.response?.status === 404) {
-        setParamsIsVaild(false);
-      }
-      console.error(error);
-    }
-  };
-
   const updateIssue = async ({ title, body, state }) => {
     try {
       const owner = userName;
@@ -77,8 +62,26 @@ const EditTask = () => {
   };
 
   useEffect(() => {
+    if (!accessToken) {
+      navigate('/');
+      return;
+    }
+    const getIssue = async () => {
+      try {
+        const res = await axios.get(
+          `https://api.github.com/repos/${owner}/${repo}/issues/${issueNumber}`
+        );
+        setParamsIsVaild(true);
+        setIssue(res.data);
+      } catch (error) {
+        if (error?.response?.status === 404) {
+          setParamsIsVaild(false);
+        }
+        console.error(error);
+      }
+    };
     getIssue();
-  }, []);
+  }, [navigate, accessToken]);
 
   useEffect(() => {
     setValue('title', issue?.title);

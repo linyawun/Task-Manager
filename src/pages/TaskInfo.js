@@ -50,6 +50,10 @@ const TaskInfo = () => {
   };
 
   useEffect(() => {
+    if (!accessToken) {
+      navigate('/');
+      return;
+    }
     const getIssueInfo = async () => {
       try {
         const res = await axios.get(
@@ -75,7 +79,7 @@ const TaskInfo = () => {
     };
 
     getIssueInfo();
-  }, []);
+  }, [navigate, accessToken]);
 
   return !paramsIsVaild ? (
     <Navigate to='/404' />
